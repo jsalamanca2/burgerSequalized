@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var exphbs = require("express-handlebars");
 var methodOverride = require("method-override");
 
-var app = express()
+var app = express();
 
 app.set('port', (process.env.PORT || 9000));
 app.use(bodyParser.json());
