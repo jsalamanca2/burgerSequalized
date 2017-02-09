@@ -10,17 +10,16 @@ var Burger = sequelize.define("burgers", {
     primaryKey: true
   },
   burger_name: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    allowNull:false,
+    validate: {
+      len:[2]
+    }
   },
   devoured: {
     type: Sequelize.BOOLEAN,
     defaultValue: 0
-  },
-  created_at: {
-    type: Sequelize.DATE
-    }
-  }, {
-  timestamps: false
+  }
 });
 
 // Syncs with DB
