@@ -1,26 +1,29 @@
-var queries = require("./../config/orm.js");
+var Sequelize = require("sequelize");
 
-var burger = {
-	// // When homepage is called
-	homePage: function(req, res){
-		queries.selectAll(function(error, results) {
-		    if (error) throw error
-		    res.render("index", {burgers: results});
-		})
-	},
-	devour: function(req, res, id) {
-		queries.updateOne(id, function(error, results) {
-		    if (error) throw error
-		    res.redirect('/');
-		})
-	},
-	newBurger: function(req, res, newestBurger) {
-		queries.insertOne(newestBurger, function(error, results) {
-		    if (error) throw error
-		   
-		    res.redirect('/');
-		})
-	}
-}
+var sequelize = require("../config/connection.js");
 
-module.exports = burger;
+// Creates a Table for the database
+var Burger = sequelize.define("burgers", {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  burger_name: {
+    type: Sequelize.STRING
+  },
+  devoured: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: 0
+  },
+  created_at: {
+    type: Sequelize.DATE
+  }
+}, {
+  timestamps: false
+});
+
+// Syncs with DB
+Burger.sync();
+
+module.exports = Burger;
