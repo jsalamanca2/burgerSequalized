@@ -18,8 +18,8 @@ var Burger = sequelize.define("burgers", {
   },
   created_at: {
     type: Sequelize.DATE
-  }
-}, {
+    }
+  }, {
   timestamps: false
 });
 

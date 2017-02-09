@@ -17,5 +17,15 @@ module.exports = function(app) {
 			res.redirect('/');
 		})
 	});
-
+	app.post('/delete/:id',function(req,res){
+		burger.update({
+			devoured:1
+			},{
+				where:{ 
+					id : req.params.id
+				}
+			}).then(function(){
+				res.redirect('/');
+			})
+		});
 }
